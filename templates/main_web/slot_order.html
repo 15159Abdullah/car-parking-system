@@ -1,0 +1,81 @@
+{% include 'main_web/head_tag.html' %}
+{% load static %}
+<body>
+
+  <div class="">
+    <div class="bg-box">
+      <img src="{% static 'main_web/images/slider-bg.jpg' %}" style="width: 1400px; height: 300px;"  alt="">
+    </div>
+    <!-- header section strats -->
+    {% include 'main_web/navbar.html' %}
+    <!-- end header section -->
+    <!-- slider section -->
+    <div class="">
+    <section class="slider_section bg-white ">
+      <div class="container text-dark">
+        
+        <div class="container">
+            <h2 class="text-center"> Slots Booking Page</h2>
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>User</th>
+                  <th>category</th>
+                  <th>Slot No.</th>
+                  <th>Parking</th>
+                  <th>Price</th>
+                  <th>In Date</th>
+                  <th>Out Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for order in orders %}
+                <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{order.user.username}}</td>
+                  <td>{{order.catogry}}</td>
+                  <td>{{order.slots.slots_number}}</td>
+                  <td>{{order.slots.parking.name}}</td>
+                  <td>{{order.slots.slots_price}}</td>
+                  <td>{{order.in_date}}</td>
+                  <td>{{order.out_date}}</td>
+                  {% if order.slot_status %}
+                  <td>
+                    <button type="button" class="btn btn-success">Success</button>
+                  </td>
+                  {% else %}
+                  <td>
+                    <button type="button" class="btn btn-warning">Pending</button>
+                  </td>
+                  {% endif %}
+                </tr>
+                {% endfor %}
+               
+                <!-- Add more rows here -->
+              </tbody>
+            </table>
+          </div>
+     
+  </div>
+        
+    </div>
+    </section>
+    <!-- end slider section -->
+  </div>
+
+   
+
+  
+ 
+
+ 
+ 
+  {% include 'main_web/footer.html' %}
+  <!-- footer section -->
+  {% include 'main_web/script_tag.html' %}
+  
+</body>
+
+</html>

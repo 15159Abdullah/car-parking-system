@@ -1,0 +1,51 @@
+{% extends 'admin_site/base.html' %}
+
+{% block content %}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <div id="layoutAuthentication">
+              <div id="layoutAuthentication_content">
+                  <main>
+                      <div class="container">
+                          <div class="row justify-content-center">
+                              <div class="col-lg-10">
+                                  <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                     
+                                      <div class="card-header"><h3 class="text-center font-weight-light my-4">ADD AREA</h3></div>
+                                      <div class="card-body">
+                                          <form method="post">
+                                            {% csrf_token %}
+                                            {% include 'accounts/alert.html' %}
+                                            <div class="form-floating mb-3">
+                                              <input class="form-control" id="inputEmail" type="text" name="country" required placeholder="Country" />
+                                              <label for="inputEmail">Country Name</label>
+                                          </div>
+                                              <div class="form-floating mb-3">
+                                                  <input class="form-control" id="inputEmail" type="text" name="area" required placeholder="Name" />
+                                                  <label for="inputEmail">Area Name</label>
+                                              </div>
+                                             
+                                              <div class="mt-4 mb-0">
+                                                  <div class="d-grid"><button class="btn btn-primary btn-block" type="submit">Add Area</button></div>
+                                              </div>
+                                          </form>
+                                      </div>
+                                     
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </main>
+              </div>
+             
+          </div>
+           
+           
+        </div>
+    </main>
+   
+
+{% endblock %}
+

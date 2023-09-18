@@ -1,0 +1,70 @@
+{% extends 'admin_site/base.html' %}
+
+{% block content %}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <div id="layoutAuthentication">
+              <div id="layoutAuthentication_content">
+                  <main>
+                      <div class="container">
+                          <div class="row justify-content-center">
+                              <div class="col-lg-10">
+                                  <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                     
+                                      <div class="card-header"><h3 class="text-center font-weight-light my-4">UPDATE SLOT</h3></div>
+                                      <div class="card-body">
+                                          <form method="post">
+                                            {% csrf_token %}
+                                            {% include 'accounts/alert.html' %}
+                                            <div class="form-floating mb-3">
+                                                <select class="form-select" id="selectParking" name="select_parking_name" required>
+                                                    
+                                                    <option value="{{slots.parking.name}}">{{slots.parking.name}}</option>
+                                                    
+                                                    {% for park in parking %}
+                                                    {% if slots.parking.name != park.name %}
+                                                    
+                                                    <option value="{{park.name}}">{{park.name}}</option>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                    <!-- Add more options as needed -->
+                                                </select>
+                                              </div>
+                                                  <div class="form-floating mb-3">
+                                                      <input class="form-control" id="inputEmail" type="text" value="{{slots.slots_number}}" name="number" required placeholder="Slot Number" />
+                                                      <label for="inputEmail">Slot Number</label>
+                                                  </div>
+                                                  <div class="form-floating mb-3">
+                                                    <input class="form-control" id="inputEmail" type="text" value="{{slots.slots_price}}" name="price" required placeholder="Slot Price" />
+                                                    <label for="inputEmail">Slot Price</label>
+                                                    <input class="form-control" id="inputEmail" type="hidden"  value="{{slots.id}}" name="slot_id" />
+                                                 </div>
+                                                 <div class="form-check mb-3">
+                                                    <input class="form-check-input" id="inputRememberPassword" type="checkbox" name="check" value="" />
+                                                    <label class="form-check-label" for="inputRememberPassword">Check Availablity</label>
+                                                </div>
+                                    
+                                                  <div class="mt-4 mb-0">
+                                                      <div class="d-grid"><button class="btn btn-primary btn-block" type="submit">UPDATE SLOTS</button></div>
+                                                  </div>
+                                          </form>
+                                      </div>
+                                     
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </main>
+              </div>
+             
+          </div>
+           
+           
+        </div>
+    </main>
+   
+
+{% endblock %}
+

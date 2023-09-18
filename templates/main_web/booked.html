@@ -1,0 +1,147 @@
+
+
+{% include 'main_web/head_tag.html' %}
+{% load static %}
+<body>
+
+  <div class="">
+    <div class="bg-box">
+      <img src="{% static 'main_web/images/slider-bg.jpg' %}" style="width: 1400px; height: 300px;"  alt="">
+    </div>
+    <!-- header section strats -->
+    {% include 'main_web/navbar.html' %}
+    <!-- end header section -->
+    <!-- slider section -->
+    <div class="">
+    <section class="slider_section bg-white ">
+        
+
+            <div class="container">
+                <div class=" text-center pb-5">
+                   
+                    <h2>BOKING SLOT FORM</h2>
+                   
+                </div>
+                <div class="row justify-content-center align-items-center">
+                   
+                    <div class="col-md-10 order-md-1">
+                       
+                        <form method = "POST" action="{% url 'booked' details.id %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                  <label>User Name </label>
+                                  <input type="text" class="form-control" readonly name='name' value="{{request.user.username}}">
+                                </div>
+                                <div class=" col-md-6 col-sm-12 col-xs-12 form-group">
+                                  <label>Email </label>
+                                  <input type="text" class="form-control" readonly name="email" value="{{request.user}}">
+                                  
+                                </div>
+                            </div>
+
+                              <div class="row">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                  <label>Address </label>
+                                  <input type="text" class="form-control" name='address' Required>
+                                </div>
+                                <div class=" col-md-6 col-sm-12 col-xs-12 form-group">
+                                  <label>Phone </label>
+                                  <input type="number"  class="form-control" name="phone" Required>
+                                  
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class=" col-md-6 col-sm-12 col-xs-12 form-group">
+                                    <label>Parking Name</label>
+                                    <input type="text" name="parking_name" class="form-control" readonly value="{{details.parking.name}}">
+                                    
+                                  </div>
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                  <label>Slot No.</label>
+                                  <input type="text"  class="form-control" readonly name='slot_no' value="{{details.slots_number}}">
+                                </div>
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                    <label>Slot Price</label>
+                                    <input type="text" name="slot_price" readonly  class="form-control" value="{{details.slots_price}}">
+                                  </div>
+                                
+                              </div>
+                              <div class="row">
+                                <div class="col-md-6">
+                                    <label>Category</label>
+                                    <div class="form-group">
+                                      <div class="input-group">
+                                        <select class="form-control" name='cat'>
+                                          <option data-display="Select Vehicle">select Vehicle</option>
+                                          <option value="car">Car</option>
+                                          <option value="bus">Bus</option>
+                                          <option value="bike">Bike</option>
+                                          <option value="other">Other</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                  </div>
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                  <label>Model</label>
+                                  <input type="number" class="form-control" Required name='model' >
+                                </div>
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                    <label>Vehicle No.</label>
+                                    <input type="text" name="num_plate" Required  class="form-control">
+                                  </div>
+                                
+                              </div>
+
+                              <div class="row">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                  <label>Check In Date </label>
+                                  <input type="date" name="in_date" class="form-control" Required>
+                                </div>
+                                <div class=" col-md-6 col-sm-12 col-xs-12 form-group">
+                                  <label>Check Out Date </label>
+                                  <input type="date" name="out_date" class="form-control" Required>
+                                  <input type="text" value="{{details.id}}" hidden name="slot_id" class="form-control">
+                                  
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                  <label>(Optional*) Upload Tarnsiction Image Here (Easypaisa : 03496865196 )</label>
+                                  <input type="file" class="form-control select2" name="image_file" style="width: 100%;" id="imageUpload" accept="image/*">
+                                </div>
+                            </div>
+
+                              <div class="row">
+                                
+                                <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                  
+                                  <button type="submit" class="btn btn-primary form-control mt-5">BOOK NOW</button>
+                                  
+                                </div>
+                              </div>
+
+                        </form>
+                    </div>
+                </div>             
+            </div>
+    </section>
+    <!-- end slider section -->
+  </div>
+
+   
+
+  
+ 
+
+ 
+ 
+  {% include 'main_web/footer.html' %}
+  <!-- footer section -->
+  {% include 'main_web/script_tag.html' %}
+  
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+{% extends 'admin_site/base.html' %}
+
+{% block content %}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Area List</h1>
+          
+            
+            <div class="card mb-4">
+              
+                <a href="{% url 'add_area' %}" class="btn btn-primary">
+                  ADD AREA+
+                </a>
+              
+                <div class="card-body ">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr class="">
+                                <th>Area ID</th>
+                                <th>Area Name</th>
+                                <th></th>
+                                <th>Country</th>
+                                <th></th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            {% for area in areas  %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{area.area_name}}</td>
+                                <td></td>
+                                <td>{{area.country}}</td>
+                                <td></td> 
+                                <td>
+                                    <a href="{% url 'update_area' area.id %}" type="button" class="btn btn-primary">
+                                        Update
+                                      </a>
+                                      <a href="{% url 'delete_area' area.id %}" type="button" class="btn btn-danger">
+                                        Delete
+                                      </a>
+                                    
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+   
+
+{% endblock %}
+

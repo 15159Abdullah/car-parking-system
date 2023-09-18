@@ -1,0 +1,57 @@
+{% extends 'admin_site/base.html' %}
+
+{% block content %}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">User List</h1>
+            
+           
+            <div class="card mb-4">
+                
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th>User Id</th>
+                                <th>User Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th></th>
+                                <th>Action</th>
+                                
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                           {% for user in users  %}
+                            <tr>
+                                <td>{{user.id}}</td>
+                                <td>{{user.username}}</td>
+                                <td>{{user.email}}</td>
+                                {% if user.is_admin %}
+                                <td><p style="color:blue; font-weight:bold;">Admin</p></td>
+                                {% else %}
+                                <td class=""><p style="color:orange; font-weight:bold;">Customer</p></td>
+                                {% endif %}
+                                <td></td>
+                                
+                                <td>
+                                    <a href="{% url 'delete_user' user.id %}" type="button" class="btn btn-danger">
+                                        Delete
+                                      </a>
+                                </td>
+                            </tr>
+                           
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+   
+
+{% endblock %}
+

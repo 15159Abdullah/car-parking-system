@@ -1,0 +1,109 @@
+{% include 'main_web/head_tag.html' %}
+{% load static %}
+<body>
+
+  <div class="">
+    <div class="bg-box">
+      <img src="{% static 'main_web/images/slider-bg.jpg' %}" style="width: 1400px; height: 300px;"  alt="">
+    </div>
+    <!-- header section strats -->
+    {% include 'main_web/navbar.html' %}
+    <!-- end header section -->
+    <!-- slider section -->
+    <div class="">
+    <section class="slider_section bg-white ">
+      <div class="container text-dark">
+        <div class="detail-box col-md-9 mx-auto px-0">
+          <h1 class="text-dark">
+            Finding Parking Lots Made Easy
+          </h1>
+        </div>
+        <div class="find_form_container">
+          <form method="get" Action="/frontend/search_parking/" >
+            {% csrf_token %}
+            <div class="form-row justify-content-center align-items-center">
+              <div class="col-md-6 px-0">
+                <div class="form-group">
+                  <div class="input-group">
+
+                    <select class="form-control" name='q' Required>
+                      <option value="" disabled selected>SELET AREA</option>
+                      {% if area %}
+                      {% for area in areas %}
+                      <option value="{{area.area_name}}">{{area.area_name}}</option>
+                      {% endfor %}
+                      {% else %}
+                      <option value="">No Area Added Yet!</option>
+                      {% endif %}
+
+                    </select>
+
+
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="form-group">
+                  <div class="btn-box">
+                    <button type="search" class="">
+                      <span>
+                        Search
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </form>
+        </div>
+              <!-- Start Blog Layout -->
+              <div class="container">
+                <div class="row justify-content-center align-items-center">
+                  {% if park %}
+                  {% for park in parking %}
+                  <div class="col-md-3 item text-white mt-2 " style="margin-right: 10px; background-color: #155263;">
+                    <div class="item-in ">
+                      <h4 class="mt-3">{{park.name}}</h4>
+                      <div class="seperator"></div>
+                      <p>{{park.address}}</p>
+                      <div class="seperator"></div>
+                      <p>Location <i class="fa fa-long-arrow-right"></i>{{park.area.area_name}}</p>
+                      <a href="{% url 'slots' park.id %}">
+                        <button class="btn mb-3" style="background-color: #ef3e00; transition: all 0.3s; color:white;">Check Slots
+                        <i class="fa fa-long-arrow-right"></i>
+                      </button>
+                      </a>
+                    </div>
+                  </div>
+                  {% endfor %}
+
+                  {% else %}
+                  <h1>No Parking Added Yet!</h1>
+                  {% endif %}
+                </div>
+              </div>
+
+    </div>
+  </div>
+
+    </div>
+    </section>
+    <!-- end slider section -->
+  </div>
+
+
+
+
+
+
+
+
+  {% include 'main_web/footer.html' %}
+  <!-- footer section -->
+  {% include 'main_web/script_tag.html' %}
+
+</body>
+
+</html>

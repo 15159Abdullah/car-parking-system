@@ -1,0 +1,61 @@
+{% extends 'admin_site/base.html' %}
+
+{% block content %}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <div id="layoutAuthentication">
+              <div id="layoutAuthentication_content">
+                  <main>
+                      <div class="container">
+                          <div class="row justify-content-center">
+                              <div class="col-lg-10">
+                                  <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                     
+                                       <div class="card-header"><h3 class="text-center font-weight-light my-4">ADD SLOTS</h3></div>
+                                      <div class="card-body">
+                                          <form method="post">
+                                            {% csrf_token %}
+                                            {% include 'accounts/alert.html' %}
+                                
+                                          <div class="form-floating mb-3">
+                                            <select class="form-select" id="selectParking" name="select_parking_name" required>
+                                                <option value="" disabled selected>Select parking</option>
+                                                {% for parking in  parkings  %}
+                                                <option value="{{parking.name}}">{{parking.name}}</option>
+                                                {% endfor %}
+                                                <!-- Add more options as needed -->
+                                            </select>
+                                          </div>
+                                              <div class="form-floating mb-3">
+                                                  <input class="form-control" id="inputEmail" type="text" name="number" required placeholder="Slot Number" />
+                                                  <label for="inputEmail">Slot Number</label>
+                                              </div>
+                                              <div class="form-floating mb-3">
+                                                <input class="form-control" id="inputEmail" type="text" name="price" required placeholder="Slot Price" />
+                                                <label for="inputEmail">Slot Price</label>
+                                            </div>
+                                             
+                                              <div class="mt-4 mb-0">
+                                                  <div class="d-grid"><button class="btn btn-primary btn-block" type="submit">ADD SLOTS</button></div>
+                                              </div>
+                                          </form>
+                                      </div>
+                                     
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </main>
+              </div>
+             
+          </div>
+           
+           
+        </div>
+    </main>
+   
+
+{% endblock %}
+

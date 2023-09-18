@@ -1,0 +1,92 @@
+{% extends 'admin_site/base.html' %}
+
+{% block content %}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Slots Request</h1>
+            
+           
+            <div class="card mb-4">
+                
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Slot No.</th>
+                                <th>Parking</th>
+                                <th>Vehicle</th>
+                                <th>Vehicle No.</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                                
+                               
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            
+                            {% for req in requests %}
+                            <tr>
+                                <td>{{req.user.username}}</td>
+                                <td>{{req.slots.slots_number}}</td>
+                                <td>{{req.slots.parking.name}}</td>
+                                <td>{{req.catogry}} ({{req.model}})<br>No.{{req.num_plate}}</td>
+                                {% if req.payment %}
+                                <td>
+                                    <a data-bs-target="#view{{req.id}}" data-bs-toggle="modal"><img src="{{req.payment.url}}" style="width: 30px;"></a>
+                                
+                                    <div class="modal" id="view{{req.id}}" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                
+                                              </button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <img src="{{req.payment.url}}" style="width: 300px;">
+                                            </div>
+                    
+                                          </div>
+                                        </div>
+                                      </div>
+                                
+                                </td>
+
+                                {% else %}
+                                <td>unpaid</td>
+                                {% endif %}
+                                <td>IN:{{req.in_date}}<br> OUT:{{req.out_date}}</td>
+                                {% if req.slot_status %}
+                                <td><p class="text-success">SUCCES</p></td>
+                                {% else %}
+                                <td><p class="text-danger">PENDING</p></td>
+                                {% endif %}
+                                <td>
+                                    <a href="{% url 'invoice' req.id %}" type="button" class="btn btn-primary">
+                                        Invoice
+                                      </a>
+                                      <a href= "{% url 'delete_slots_request' req.id %}" type="button" class="btn btn-danger">
+                                        Delete
+                                      </a>
+                                      <a href= "{% url 'confirm_slot' req.id %}" type="button" class="btn btn-warning">
+                                        Confirm
+                                      </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+   
+
+{% endblock %}
+

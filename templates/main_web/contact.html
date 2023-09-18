@@ -1,0 +1,70 @@
+{% include 'main_web/head_tag.html' %}
+{% load static %}
+<body>
+
+  <div class="">
+    <div class="bg-box">
+      <img src="{% static 'main_web/images/slider-bg.jpg' %}" style="width: 1400px; height: 300px;"  alt="">
+    </div>
+    <!-- header section strats -->
+    {% include 'main_web/navbar.html' %}
+
+      <section class="slider_section bg-white ">
+
+          <div class="container">
+            <h1 class="text-center">
+              Contact Us
+            </h1>
+            <div class="row block-9">
+
+              <div class="col-md-6 d-flex">
+                <div class="bg-white">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d214035.79078843645!2d73.5692467!3d33.0483248!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391fec085ec688ef%3A0xd988766d3ccdd31c!2sMirpur%20University%20of%20Science%20and%20Technology%20(MUST)!5e0!3m2!1sen!2s!4v1694068260764!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+              </div>
+
+              <div class="col-md-6 order-md-last">
+                <form action="" method = "POST" class="bg-white p-5 contact-form">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <input type="text" name = 'name' class="form-control" placeholder="Your Name" , required>
+                  </div>
+                  <div class="form-group">
+                    <input type="Email" name='email' class="form-control" placeholder="Your Email" , required>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" name = 'subject' class="form-control" placeholder="Subject">
+                  </div>
+                  <div class="form-group">
+                    <textarea name="message" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                  </div>
+                </form>
+
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+    <!-- end slider section -->
+  </div>
+
+
+
+
+
+
+
+
+  {% include 'main_web/footer.html' %}
+  <!-- footer section -->
+  {% include 'main_web/script_tag.html' %}
+
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+/*---------------------
+  Shop
+-----------------------*/
+.card {
+    width: 100px; /* You can adjust the width to your desired size */
+    height: 100px; /* You can adjust the height to your desired size */
+    font-weight: 900;
+    /* Add any other styling properties you want here */
+  }
+
+  .card-footer {
+    font-size: 10px; /* You can adjust the font size to your desired value */
+    /* Add any other styling properties for the card footer here */
+  }
+  #login .container #login-row #login-column #login-box {
+    margin-top: 100px;
+    max-width: 1000px;
+    height: 400px;
+    border: 1px solid #9C9C9C;
+    background-color: #EAEAEA;
+  }
+  #login .container #login-row #login-column #login-box #login-form {
+    padding: 20px;
+  }
+  #login .container #login-row #login-column #login-box #login-form #register-link {
+    margin-top: -85px;
+  }
+
+
+  
+ 

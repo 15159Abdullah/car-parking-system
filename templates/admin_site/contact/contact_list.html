@@ -1,0 +1,55 @@
+{% extends 'admin_site/base.html' %}
+
+{% block content %}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Contact List</h1>
+            
+           
+            <div class="card mb-4">
+                
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Subject</th>
+                                <th>Message</th>
+                                <th>Action</th>
+                                
+                               
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                           
+                            {% for con in contacts %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{con.name}}</td>
+                                <td>{{con.email}}</td>
+                                <td>{{con.subject}}</td>
+                                <td>{{con.message}}</td>
+                                <td>
+                                    <a href="{% url 'delete_contact' con.id %}" type="button" class="btn btn-danger">
+                                        Delete
+                                      </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                           
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+   
+
+{% endblock %}
+

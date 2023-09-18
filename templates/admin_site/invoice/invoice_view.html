@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+
+     <link type="text/css" href="{% static 'inv.css' %}" />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <title>Parking Invoice</title>
+  </head>
+  <body>
+<div class="container pt-5">
+    <div class="row gutters ">
+    	<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    		<div class="card ">
+    			<div class="card-body p-0 ">
+    				<div class="invoice-container">
+    					<div class="invoice-header">
+
+    						<!-- Row start -->
+
+    						<!-- Row end -->
+
+    						<!-- Row start -->
+    						<div class="row gutters ">
+    							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+    								<a href="#" class="invoice-logo">
+                                        <h2 class="mt-2 pl-2">
+    									Vehicle Parking Slip
+                                        <h2>
+    								</a>
+    							</div>
+    							<div class="col-lg-6 col-md-6 col-sm-6">
+    								<address class="text-right pr-2">
+    									Admin {{request.user.username}}<br>
+    									      {{request.user.email}}<br>
+                                        Call: +923128877331
+    								</address>
+    							</div>
+    						</div>
+    						<!-- Row end -->
+
+    						<!-- Row start -->
+    						<div class="row gutters">
+    							<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+    								<div class="invoice-details">
+    									<address class="pl-2">
+                                            {{requests.user.username}}<br>
+    										{{requests.user}}<br>
+    										{{requests.address}}<br>
+    									</address>
+    								</div>
+    							</div>
+    							<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+    								<div class="invoice-details">
+    									<div class="invoice-num">
+    										<div>Invoice - #00{{requests.id}}</div>
+    										<div><p id="dnt"></p>
+                                                <script>
+                                                document.getElementById("dnt").innerHTML = Date();
+                                                </script></div>
+
+    									</div>
+    								</div>
+    							</div>
+    						</div>
+    						<!-- Row end -->
+
+    					</div>
+
+    					<div class="invoice-body">
+
+    						<!-- Row start -->
+    						<div class="row gutters">
+    							<div class="col-lg-12 col-md-12 col-sm-12">
+    								<div class="table-responsive">
+    									<table class="table custom-table m-0">
+    										<thead>
+    											<tr>
+    												<th>Parking</th>
+                                                    <th>Parking Add.</th>
+    												<th>Slot No.</th>
+    												<th>Vehicle</th>
+    												<th>Vehicle No.</th>
+                                                    <th>Slots Price</th>
+
+    											</tr>
+    										</thead>
+    										<tbody>
+    											<tr>
+                                                    <td>{{requests.slots.parking.name}}</td>
+                                                    <td>{{requests.slots.parking.address}}</td>
+    												<td>#{{requests.slots.slots_number}}</td>
+    												<td>{{requests.catogry}}</td>
+                                                    <td>{{requests.num_plate}}</td>
+    												<td>PKR {{requests.slots.slots_price}}.00</td>
+
+    											</tr>
+
+    										</tbody>
+
+    									</table>
+
+
+    								</div>
+                                    <div class="row">
+                                        <!-- accepted payments column -->
+                                        <!-- /.col -->
+                                        <div class="col-6">
+
+                                          <div class="table-responsive">
+                                            <table class="table">
+                                              <tr>
+                                                <td style="width:50%">
+                                                    <p>
+                                                        Subtotal<br>
+                                                        Tax<br>
+                                                    </p>
+                                                    <h5 class="text-success"><strong>Grand Total</strong></h5>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        PKR {{requests.slots.slots_price}}.00<br>
+                                                        PKR 10.00<br>
+                                                    </p>
+                                                    <h5 class="text-success"><strong>PKR {{requests.slots.slots_price |add:10}}.00</strong></h5>
+
+                                                </td>
+                                              </tr>
+                                            </table>
+                                          </div>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <div class="row gutters text-right pr-5">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                            <div class="custom-actions-btns mb-5 mt-3 ml-5">
+                                                <button onclick="printPage()" class="btn btn-secondary">
+                                                    <i class="fas fa-print"></i> Print
+                                                </button>
+                                                <button onclick="printPage()" class="btn btn-primary">
+                                                    <i class="icon-download"></i> Download
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+</div>
+ <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+ <script>
+    function printPage() {
+      window.print(); // Invoke the print functionality
+    }
+
+  </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+  </body>
+</html>

@@ -1,0 +1,55 @@
+{% include 'main_web/head_tag.html' %}
+{% load static %}
+<body>
+
+  <div class="hero_area">
+    <div class="bg-box">
+      <img src="{% static 'main_web/images/slider-bg.jpg' %}" >
+    </div>
+    <!-- header section strats -->
+    {% include 'main_web/navbar.html' %}
+    <!-- end header section -->
+    <!-- slider section -->
+    <div id="login" class="mb-5"> 
+      
+      <div class="container">
+          <div id="login-row" class="row justify-content-center align-items-center">
+              <div id="login-column" class="col-md-6">
+                  <div id="login-box" class="col-md-12">
+                      <form id="login-form" class="form" action="" method="post">
+                        {% csrf_token %}
+                        {% include 'accounts/alert.html' %}
+                          <h3 class="text-center text-info">Login</h3>
+                          <div class="form-group">
+                              <label for="username" class="text-info">Email Address</label><br>
+                              <input type="email" name="email" id="email" class="form-control">
+                          </div>
+                          <div class="form-group">
+                              <label for="password" class="text-info">Password</label><br>
+                              <input type="password" name="password" id="password" class="form-control">
+                          </div>
+                          <div class="form-group">
+                              <a href="{% url "forget_password" %}">Reset Pasword</a><br>
+                              <input type="submit" name="submit" class="btn btn-info btn-md" value="Login">
+                          </div>
+                          <div id="register-link" class="text-right">
+                              <a href="{% url 'user_signup' %}" class="text-info">Register Here</a>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+    
+    <!-- end slider section -->
+  </div>
+
+ 
+  {% include 'main_web/footer.html' %}
+  <!-- footer section -->
+  {% include 'main_web/script_tag.html' %}
+  
+</body>
+
+</html>

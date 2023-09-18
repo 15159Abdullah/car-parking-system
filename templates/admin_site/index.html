@@ -1,0 +1,108 @@
+{% extends 'admin_site/base.html' %}
+
+{% block content %}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Dashboard</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+            <div class="row">
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-primary text-white mb-4">
+                        <div class="card-body text-center">USERS</div>
+                        <div> <h3 class="text-center">{{users}}</h3> </div>
+                        <div class="card-footer d-flex align-items-center justify-content-center">
+                            <a class="small text-white stretched-link" href="{% url 'user_list' %}">View Details</a>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-success text-white mb-4">
+                        <div class="card-body text-center">AREAS</div>
+                        <div> <h3 class="text-center">{{areas}}</h3> </div>
+                        <div class="card-footer d-flex align-items-center justify-content-center">
+                            <a class="small text-white stretched-link" href="{% url 'area_list' %}">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-warning text-white mb-4">
+                        <div class="card-body text-center">PARKING</div>
+                        <div> <h3 class="text-center">{{parking}}</h3> </div>
+                        <div class="card-footer d-flex align-items-center justify-content-center">
+                            <a class="small text-white stretched-link" href="{% url 'parking_list' %}">View Details</a>
+                           
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-danger text-white mb-4">
+                        <div class="card-body text-center">SLOTS REQUEST</div>
+                        <div> <h3 class="text-center">{{length}}</h3> </div>
+                        <div class="card-footer d-flex align-items-center justify-content-center">
+                            <a class="small text-white stretched-link" href="{% url 'slots_request' %}">View Details</a>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Slots Request
+                </div>
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Slot No.</th>
+                                <th>Parking</th>
+                                <th>Vehicle</th>
+                                <th>Vehicle No.</th>
+                                <th>In-Date</th>
+                                <th>Out-Date</th>
+                                <th>Action</th>
+                                
+                               
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            
+                            {% for req in slots_request %}
+                            <tr>
+                                <td>{{req.user.username}}</td>
+                                <td>{{req.slots.slots_number}}</td>
+                                <td>{{req.slots.parking.name}}</td>
+                                <td>{{req.catogry}} ({{req.model}})</td>
+                                <td>{{req.num_plate}}</td>
+                                <td>{{req.in_date}}</td>
+                                <td>{{req.out_date}}</td>
+                                <td>
+                                    <a href="{% url 'invoice' req.id %}" type="button" class="btn btn-primary">
+                                        Invoice
+                                      </a>
+                                      <a href= "{% url 'delete_slots_request' req.id %}" type="button" class="btn btn-danger">
+                                        Delete
+                                      </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+   
+
+{% endblock %}
+

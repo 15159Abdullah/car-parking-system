@@ -1,0 +1,59 @@
+{% extends 'admin_site/base.html' %}
+
+{% block content %}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Parking List</h1>
+            
+           
+            <div class="card mb-4">
+              <a href="{% url 'add_parking' %}" class="btn btn-primary">
+                ADD PARKING+
+              </a>
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th>Parking ID</th>
+                                <th>Area</th>
+                                <th>Parking Name</th>
+                                <th>Adress</th>
+                                <th></th>
+                                
+                                <th>Action</th>
+                                
+                               
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                           {% for parking in parkings  %}
+                             <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{parking.area.area_name}}</td>
+                                <td>{{parking.name}}</td>
+                                <td>{{parking.address}}</td>
+                                <td></td>
+                                <td>
+                                    <a href="{% url 'update_parking' parking.id %}" type="button" class="btn btn-primary">
+                                        Update
+                                      </a>
+                                      <a href="{% url 'delete_parking' parking.id %}" type="button" class="btn btn-danger">
+                                        Delete
+                                      </a>
+            
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+   
+
+{% endblock %}
+

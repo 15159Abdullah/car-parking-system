@@ -1,0 +1,71 @@
+{% extends 'admin_site/base.html' %}
+
+{% block content %}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Slots List</h1>
+            
+           
+            <div class="card mb-4">
+              <a href="{% url 'add_slot' %}" class="btn btn-primary">
+                ADD SLOTS+
+              </a>
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                         <thead>
+                           
+                            <tr>
+                                <th>ID</th>
+                                <th>Area</th>
+                                <th>Slot No.</th>
+                                <th>Parking</th>
+                                <th>Slot Price</th>
+                                <th>Status</th>
+                                
+                                <th>Action</th>
+                                
+                               
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            {% for slot in  slots  %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{slot.parking.area.area_name}}</td>
+                                <td>{{slot.slots_number}}</td>
+                                <td>{{slot.parking.name}}</td>
+                                <td>RS {{slot.slots_price}}</td>
+                                {% if slot.slot_color == False %}
+                                <td><p style="color:red; font-weight:bold;">Unavailable</p></td>
+                                {% else %}
+                                <td><p style="color:blue; font-weight:bold;">Available</p></td>
+                                {% endif %}
+                                
+                                <td>
+
+                                    <a href="{% url 'update_slot' slot.id %}" type="button" class="btn btn-primary">
+                                        Update
+                                      </a>
+                                      <a href="{% url 'delete_slot' slot.id %}" type="button" class="btn btn-danger">
+                                        Delete
+                                      </a>
+                                      <a href="{% url 'checked' slot.id %}" type="button" class="btn btn-warning">
+                                        Available
+                                      </a>
+                                </td>
+                            </tr>
+                           
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+   
+
+{% endblock %}
+

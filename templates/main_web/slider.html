@@ -1,0 +1,55 @@
+<section class="slider_section ">
+    <div class="container">
+      <div class="detail-box col-md-9 mx-auto px-0">
+        <h1>
+          Finding Parking Lots Made Easy
+        </h1>
+        <p>
+          First Web Based Application of Azad Kashmir Will help You To Find Parking Nearest to your Location First Select Area To find the parking if You are new here.
+        </p>
+      </div>
+      <div class="find_form_container">
+        <form action="/frontend/search_parking/" method="get">
+          {% csrf_token %}
+          <div class="form-row">
+            <div class="col-md-4 px-0">
+              <div class="form-group">
+                <label for="">SELECT AREA</label>
+                <div class="input-group">
+                  <select class="form-control" name="q" Required>
+                    <option value="" disabled selected>SELET AREA</option>
+                    {% for area in areas %}
+                    <option value="{{area.area_name}}">{{area.area_name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 px-0">
+              <div class="form-group ">
+                <label for="">Your Name</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Enter Your Name" />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 px-0">
+              <div class="form-group">
+                <label for="">Your Mobile Number</label>
+                <div class="input-group ">
+                  <input type="text" class="form-control" placeholder="Enter Phone" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="btn-box">
+            <button type="submit" class="">
+              <span>
+                Search Now
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
